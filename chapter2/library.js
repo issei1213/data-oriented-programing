@@ -19,6 +19,7 @@ class Library {
 class UserManagement {
     static isLibrarian(userManagementData, userId) {
         //...
+    
     }
 
     static isSuperMember(userManagementData, userId) {
