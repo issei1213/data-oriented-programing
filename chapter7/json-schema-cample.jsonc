@@ -1,0 +1,33 @@
+
+// JSON Schemaのカンペ
+{
+  "type": "array", // ルートレベルでは、データは配列
+  "items": {
+    "type": "object", // 配列の各要素はマップ
+    "properties": {
+      "myNumber": { "type": "number" }, // myNumberは数値
+      "myString": { "type": "string" }, // myStringは文字列
+      "myEnum": { "enum": ["myVal", "yourVal"] }, // myEnumは"myVal"か"yourVal"の２つの選択肢を持つ列挙型
+      "myBool": { "type": "boolean" } // myBoolはブール値
+    },
+    "required": ["myNumber", "myString"], // マップの必須フィールドはmyNumberとmyString。他のフィールドはオプション
+    "additionalProperties": false // スキーマで明示的されていないフィールドは許可しない
+  }
+}
+
+// 有効なデータの例
+[
+  // 全てのフィールドが有効なので、このマップは有効
+  { 
+    "myNumber": 42,
+    "myString": "Hello",
+    "myEnum": "myVal",
+    "myBool": true
+  },
+
+  // 必須フィールドを全て含んでいるので、このマップは有効
+  {
+    "myNumber": 54,
+    "myString": "Happy",
+  }
+]
