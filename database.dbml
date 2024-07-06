@@ -1,0 +1,21 @@
+Project social_blogging_site {
+  database_type: 'PostgreSQL'
+  Note: 'データ指向プログラミング'
+}
+
+
+Table books{
+  isbn varchar(32) [note: "ISBNコード"]
+  title varchar(64)
+  publication_year int
+}
+
+Table authors{
+  id varchar(64)
+  name varchar(64)
+}
+
+Table books_authors [note: "本と著者の関係"] {
+  isbn varchar(32) [ref: > books.isbn]
+  author_id varchar(64) [ref: > authors.id]
+}
