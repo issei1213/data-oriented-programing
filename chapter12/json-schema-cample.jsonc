@@ -1,0 +1,70 @@
+{
+  "type": "array" /* ルートレベルでは、データ配列 */,
+  "items": {
+    "type": "object" /* 配列の各要素はオブジェクト */,
+    /* マップ内の各フィールドのプロパティ */
+    "properties": {
+      /* 数値 */
+      "myNumber": { "type": "number" },
+      /* 文字列 */
+      "myString": { "type": "string" },
+      /* 二つの選択肢を持つ列挙型 */
+      "myEnum": { "enum": ["myVal", "yourVal"] },
+      /* ブール値 */
+      "myBool": { "type": "boolean" },
+      /* 0 ~ 120の整数 */
+      "myAge": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 120
+      },
+      /* 日付フォーマットの準拠する文字列 */
+      "myBirthday": {
+        "type": "string",
+        "format": "date"
+      },
+      /* 文字(小文字または大文字)だけで構成された文字列 */
+      "myLetters": {
+        "type": "string",
+        "pattern": "[a-zA-Z]*"
+      },
+      /* 全ての値が数値である同種文字列マップ */
+      "myNumberMap": {
+        "type": "object",
+        "prefixItems": { "type": "number" }
+      },
+      /* 1つ目の要素文字列、二つ目の要素が数値にタプル */
+      "myTuple": {
+        "type": "array",
+        "prefixItems": [{ "type": "string" }, { "type": "number" }]
+      }
+    },
+    /* マップの必須フィールドはmyNumberとmyString。他のフィールドはオプション */
+    "required": ["myNumber", "myString"],
+    /* スキーマで明示的に指定されていないフィールドは許可しない */
+    "additionalProperties": false
+  }
+}
+
+/*
+[
+    {
+        "myNumber": 42,
+        "myString": "Hello, World!",
+        "myEnum": "myVal",
+        "myBool": true,
+        "myTuple": ["Hello", 42]
+    },
+    {
+        "myNumber": 54,
+        "myString": "Happy",
+        "myAge": 42,
+        "myBirthday": "2020-01-01",
+        "myLetters": "Hello",
+        "myNumberMap": {
+            "banana": 42,
+            "apple": 54
+        }
+    }
+]
+*/
