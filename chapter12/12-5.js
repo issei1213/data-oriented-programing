@@ -19,6 +19,9 @@ import _ from 'lodash';
   var catalogRandom = JSONSchemaFaker.generate(catalogSchema);
   var queryRandom = JSONSchemaFaker.generate({ type: 'string' });
 
+  console.log("%o", catalogRandom);
+//   console.log(JSON.stringify(JSONSchemaFaker.generate(catalogSchema)));
+
   try {
     var firstBook = _.values(_.get(catalogRandom, 'booksByIsbn'))[0];
     var query = _.get(firstBook, 'title').substring(0, 3);
